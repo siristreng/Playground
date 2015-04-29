@@ -1,0 +1,202 @@
+<!--
+        index.html
+        
+        Copyright 2011 Derrick Streng <derrick@Mastadon>
+        
+        This program is free software; you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation; either version 2 of the License, or
+        (at your option) any later version.
+        
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+        
+        You should have received a copy of the GNU General Public License
+        along with this program; if not, write to the Free Software
+        Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+        MA 02110-1301, USA.
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>VLC Mosaic Wizard HTML 5 Edition</title>
+	<script type="text/javascript" src="customvlm.js"></script>
+	<link rel="stylesheet" type="text/css" href="vlcmosaic.css" />
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 0.20" /> <!-- Yeah, I don't mind advertising for Geany -->
+</head>
+
+<body onload="init()">
+	<div>
+		<div id="canvasContainer" class="canvas container">
+			<div class="title">
+				<img src="VLCicon.png" />
+				VLC Mosaic Wizard: Canvas
+			</div>
+			<canvas id="canvas" width="640" height="480" style="border-bottom: 1px solid rgb(0,0,0); margin-bottom: 5px;"></canvas>
+			<button onclick="createVLM()">Show/Update Code</button>
+			<button onclick="hideVLM()">Hide Code</button>
+			<button onclick="launch()">Launch</button>
+			<button onclick="save()">Save</button>
+			<button onclick="load()">Load</button>
+			<button onclick="reset()">Reset</button>
+			<br/>
+			&nbsp;<a class="alt" href="http://localhost:8080/vlm.html" title="Manage your mosaic via VLC's http interface.">Manage Running Mosaic</a>
+			&nbsp;<a onclick="showHelpVideo()" class="alt" style="color:blue;text-decoration:underline; cursor: pointer">Show/Hide Help Video</a>
+		</div>
+		<div id="sidebar" class="sidebar">
+			<div class="container">
+				<div class="title">
+					&nbsp;Source Options
+				</div>
+				<table>
+					<tr>
+						<td colspan="4">
+							<select onchange="updateMenu()" id="currentSourceMenu">
+							<!-- Fill this in Dynamically -->
+							</select>
+							<button id="add" onclick="add()">Add</button>
+							<button id="remove" onclick="remove()">Remove</button> 
+						</td>
+					</tr>
+					<tr>
+						<td class="alt">Source</td>
+						
+						<td colspan="3"><input id="source" type="text"></td>
+					</tr>
+					<tr>
+						<td class="alt">
+							Position X
+						</td>
+						<td>
+							<input id="posx" size="3" maxlength="4" type="text"/>
+						</td>
+						<td class="alt">
+							Position Y
+						</td>
+						<td>
+							<input id="posy" size="3" maxlength="4" type="text"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="alt">
+							Width
+						</td>
+						<td>
+							<input id="width" size="3" maxlength="4" type="text"/>
+						</td>
+						<td class="alt">
+							Height
+						</td>
+						<td>
+							<input id="height" size="3" maxlength="4" type="text"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="alt">
+							Alpha
+						</td>
+						<td colspan="3">
+							<input id="alpha" size="3" maxlength="3" type="text" />
+						</td>
+					</tr>
+					<tr>
+						<td class="alt">
+							Audio?
+						</td>
+						<td>
+							<input id="audio" type="checkbox"/>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="container">
+				<div class="title">
+					&nbsp;Background Options
+				</div>
+				<table class="borderedTable" style="width: 100%;">
+					<tr>
+						<td class="alt"> 
+							Source
+						</td>
+						<td colspan="3">
+							<input id="bgsource" type="text" value="fake://"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="alt">
+							Width
+						</td>
+						<td>
+							<input id="bgwidth" size="3" maxlength="4" type="text" onchange="changeBgWidth(value)"/>
+						</td>
+						<td class="alt">
+							Height
+						</td>
+						<td>
+							<input id="bgheight" size="3" maxlength="4" type="text" onchange="changeBgHeight(value)"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="alt">Option0</td>
+						<td colspan="3"><input id="option0" type="text" value="fake-file=black.jpg"></td>	
+					</tr>
+					<tr>
+						<td class="alt">Option1</td>
+						<td colspan="3"><input id="option1" type="text" value="fake-width=640"></td>	
+					</tr>
+					<tr>
+						<td class="alt">Option2</td>
+						<td colspan="3"><input id="option2" type="text" value="fake-height=480"></td>	
+					</tr>
+					<tr>
+						<td class="alt">Option3</td>
+						<td colspan="3"><input id="option3" type="text" value="fake-duration=0"></td>	
+					</tr>
+					<tr>
+						<td class="alt">Option4</td>
+						<td colspan="3"><input id="option4" type="text" value="input-slave=alsa://hw:0,0"></td>	
+					</tr>
+				</table>
+			</div>
+			<div class="container">
+				<div class="title">
+					&nbsp;Output Options
+				</div>
+				<table>
+					<tr>
+						<td class="alt">Output to:</td>
+						<td><select id="outPutTo" onchange="changeOutput()">
+						<option>Display</option>
+						<option>File</option>
+						<option>Display/File</option>
+						</select></td>
+					</tr>
+					<tr id="outputFile">
+					</tr>
+					<tr>
+						<td class="alt">Threads:</td>
+						<td><input id="threads" size="2" maxlength="2" type="text"/></td>
+					</tr>
+				
+				</table>
+			</div>
+			<div class="container">
+				<div class="title">Tutorial</div>
+				<video class="container" style="margin: 2px;" src=./testvideo.ogg width="320" height="240" preload controls />
+			
+			</div>
+		</div>
+	</div>
+	<br/>
+	<div id="vlm.conf" class="container canvas" style="border:0px; position: relative;">
+		</div>
+	
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!--
+        index.html
+        
+        Copyright 2013 Derrick Streng <siristreng@gmail.com>
+        
+        This program is free software; you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation; either version 2 of the License, or
+        (at your option) any later version.
+        
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+        
+        You should have received a copy of the GNU General Public License
+        along with this program; if not, write to the Free Software
+        Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+        MA 02110-1301, USA.
+-->
+
+<!DOCTYPE html>
+
+<head>
+	<title>VLC Mosaic Wizard HTML 5 Edition</title>
+	<script type="text/javascript" src="customvlm.js"></script>
+	<link rel="stylesheet" type="text/css" href="vlcmosaic.css" />
+</head>
+
+<body onload="init()">
+	<div>
+		<div id="canvasContainer" class="canvas container">
+			<canvas id="canvas" width="640" height="480" style="border-bottom: 1px solid rgb(0,0,0); margin-bottom: 5px;"></canvas>
+			<div style="width: 640; margin: 2px;">
+				<text class=button onclick="reset()">Reset</text>
+			</div>
+		</div>
+		<div id="sidebar" class="sidebar">
+			<div class="container">
+				 <header><h1>VLM Mosaic Wizard</h1></header>
+
+				<fieldset>
+					<select onchange="updateMenu()" id="currentSourceMenu">
+					<!-- Fill this in Dynamically -->
+					</select>
+					<br/>
+					<text class=button id="add" onclick="add()">Add</text>
+					<text class=button id="remove" onclick="remove()">Remove</text><br/>
+					
+					<legend>Source Attributes</legend>
+					<label for="source">Source</label>
+					<input id="source" type="text"><br/>
+				
+					<label for="posx">PositionX</label>
+					<input id="posx" size="3" maxlength="4" type="text"/><br/>
+					
+					<label for="posy">PositionY</label>
+					<input id="posy" size="3" maxlength="4" type="text"/><br/>
+					
+					<label for="width">Width</label>
+					<input id="width" size="3" maxlength="4" type="text"/><br/>
+					
+					<label for="height">Height</label>
+					<input id="height" size="3" maxlength="4" type="text"/><br/>
+		
+					<label for="alpha">Alpha</label>
+					<input id="alpha" size="3" maxlength="3" type="text" /><br/>
+			
+					<label for="audio">Audio?</label>
+					<input id="audio" type="checkbox"/><br/>
+				</fieldset>	
+				<br/>
+				<fieldset>
+					<legend>Background Attributes</legend>
+					
+					<label for="bgsource">Source</label>
+					<input id="bgsource" type="text" value="screen://"/><br/>
+					
+					<label for="bgwidth">Width</label>
+					<input id="bgwidth" size="3" maxlength="4" type="text" onchange="changeBgWidth(value)"/><br/>
+					
+					<label for="bgheight">Height</label>
+					<input id="bgheight" size="3" maxlength="4" type="text" onchange="changeBgHeight(value)"/><br/>
+					
+					<label for="option0">Option0</label>
+					<input id="option0" type="text" value="screen-follow-mouse"><br/>	
+				
+					<label for="option1">Option1</label>
+					<input id="option1" type="text" value="screen-width=640"><br/>	
+				
+					<label for="option2">Option2</label>
+					<input id="option2" type="text" value="screen-height=480"><br/>
+				
+					<label for="option3">Option3</label>
+					<input id="option3" type="text" value="screen-fps=15"><br/>
+				
+					<label for="option4">Option4</label>
+					<input id="option4" type="text" value="input-slave=alsa://hw:0,0"><br>	
+				</fieldset>
+			</div>
+			<div class="container">
+				<a class="button" href="tutorial.ogg" style="margin-left: auto; margin-right: auto;">Watch a tutorial</a>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<div id="launchContainer" class="container">
+		<text class=button onclick="createVLM()">Update</text>
+		<text class=button onclick="launch()">Launch</text>
+		<a class="button" href="http://localhost:8080/vlm.html">Manage Sources</a>
+		<br/>
+		
+		<fieldset>
+			<!--Change this to a <datalist></datalist> later -->
+			<legend>Transcode</legend>
+			<textarea id="transcode" type="text" style="height: 50px;"></textarea>
+		</fieldset>	
+		<fieldset>
+			<legend>Launch Code</legend>
+			<textarea id="launchCode" style="background-color: white; color: black; text-align: left; overflow-y: auto;"  type="text" id="cmdLineArgs"></textarea>
+		</fieldset>
+		<fieldset>
+			<legend>The vlm.conf</legend>
+			<textarea type="text" id="vlm.conf" style="height: 500px;"></textarea>
+		</fieldset>
+	</div>
+	
+</body>
+
+</html>

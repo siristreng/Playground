@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<title>HTML5 Canvas Fractal</title>
+		<script type="text/javascript" src="fractal.js"></script>
+	</head>
+	<body onload="start()">
+		<canvas id="canvas" width="2550" height="2550" style="border:black 1px dotted"></canvas>
+		<br/>
+		<div style= "width: 600; border:solid black 1px">
+			Length (px)<input id="length" size="4" maxlength="4" type="text" value="500" onchange="start()"/>
+			n<input id="n" size="1" maxlength="1" type="text" value="4" onchange="start()"/>
+			<button onclick="start()">Draw!</button>
+		</div>
+	</body>
+
+	
+</html>

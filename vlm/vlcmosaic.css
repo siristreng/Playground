@@ -1,0 +1,154 @@
+/* 
+	vlcmosaic.css
+        
+        Copyright 2013 Derrick Streng <siristreng@gmail.com>
+        
+        This program is free software; you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation; either version 2 of the License, or
+        (at your option) any later version.
+        
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+        
+        You should have received a copy of the GNU General Public License
+        along with this program; if not, write to the Free Software
+        Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+        MA 02110-1301, USA.
+
+
+ */
+header {
+	background-color: #C1C1C1;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: white;
+	text-align: center;
+	text-shadow: 3px 3px rgba(150,150,150,150);
+}
+
+.container{
+	margin: 10px;
+	padding: 10px;
+	border: 1px solid #C1C1C1;
+/*
+	border-bottom-right-radius:7px;
+	border-bottom-left-radius:7px;
+	border-top-left-radius:7px;
+	border-top-right-radius:7px;
+*/
+	box-shadow: 5px 5px 5px rgba(150,150,150,150);
+	font-size: 10px;
+	color: white;
+	background-color: #C1C1C1;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	
+}
+.alt{
+	text-align: center;
+	font-size: smaller;
+	vertical-align: bottom;
+}
+.title{
+	color: white; 
+	background-color: black; 
+	font-weight: bold;
+	##vertical-align:top;
+	##border: 1px solid rgb(0,0,0);
+	border-top-left-radius:7px;
+	border-top-right-radius:7px;
+	padding: 0px;
+	
+}
+.canvas{
+	padding-top: 10px;
+	width:640px;
+}
+
+canvas{
+	background-color: white;
+	border: black solid 1px;
+}
+
+.sidebar{
+	position: absolute;
+	left: 660px;
+	top: 0px;
+	margin-top: 0px;
+	margin-left: 20px;
+	padding: 0px;
+}
+body{
+	background-color: rgb(240,240,240);
+}
+
+options{
+	width: 300px;
+}
+
+pre {
+	 white-space: pre-wrap;       /* css-3 */
+	 white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+	 white-space: -pre-wrap;      /* Opera 4-6 */
+	 white-space: -o-pre-wrap;    /* Opera 7 */
+	 word-wrap: break-word;       /* Internet Explorer 5.5+ */
+	 text-align: left;
+}
+
+.contSeg{
+	border-bottom: dashed grey 1px;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+}
+
+.button{
+	font-size: 10px;
+	font-weight: bold;
+	height: 34px;
+	line-height: 34px;
+	background-color: rgb(204,61,47);
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-left: 5px;
+}
+
+.button:hover{
+	background-color: rgb(174,31,17);
+	cursor: hand; cursor: pointer;
+}
+
+input[type=text]{
+	margin-bottom: -8px;
+	border: solid black 1px;
+}
+
+label{
+	float:left;
+  width:45px;
+  margin-right:0.5em;
+  padding-top:0.2em;
+  text-align:right;
+  font-weight:bold;
+}
+
+fieldset{
+	border: dashed grey 1px;
+}
+
+textarea{
+	font-size: 12px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	resize: none; 
+	overflow-y: auto;
+	background-color: white; 
+	color: black; 
+	text-align: left;
+	word-wrap:break-word;
+	text-wrap:unrestricted;
+}
